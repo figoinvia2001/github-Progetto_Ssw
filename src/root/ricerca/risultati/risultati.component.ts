@@ -19,7 +19,7 @@ export class RisultatiComponent implements OnInit {
 
   prestito(){
     var nominativo: HTMLInputElement = document.getElementById('nominativo') as HTMLInputElement;
-    var campo_nome:  HTMLElement = document.getElementById('campo_nome') as HTMLElement;
+    var in_prestito:  HTMLElement = document.getElementById('in_prestito') as HTMLElement;
     var posizione: HTMLElement = document.getElementById('posizione') as HTMLElement;
     var output: HTMLElement = document.getElementById('notifica') as HTMLInputElement;
     var biblio: Archivio;
@@ -33,7 +33,7 @@ export class RisultatiComponent implements OnInit {
             this.bs.setData(biblio).subscribe({
               next: (res: AjaxResponse<any>) =>{
                 output.innerHTML = "Presito eseguito";
-                campo_nome.setAttribute('hidden','true');
+                in_prestito.setAttribute('hidden','true');
               },
               error: (err) =>{
                 console.error('Observer got an error: ' + JSON.stringify(err));
