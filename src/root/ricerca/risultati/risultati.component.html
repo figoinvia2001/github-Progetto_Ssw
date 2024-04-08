@@ -7,12 +7,12 @@
     Autore: <span id = "autore">{{risultato[1]}}</span><br>
     Titolo: <span id = "titolo">{{risultato[2]}}</span><br><br>
   </div>
-  <div *ngIf="risultato[3]==undefined" id = "campo_nome">
+  <div *ngIf="risultato[3]==undefined" id = "in_prestito">
   <b>Prestito</b><br>
   Nominativo: <input id = "nominativo"><button (click) = "prestito()">presta</button><br><br>
   <button (click) = "rimozione()">Rimozione</button><br><br>
   </div>
-  <div *ngIf="risultato[3]!=undefined" id = "campo_nome">
+  <div *ngIf="risultato[3]!=undefined" id = "in_prestito">
   <button id = "bottone_restituzione" (click)="restituzione()">Restituzione</button><br><br>
   </div>
   <div id = "notifica"></div><br><br>
