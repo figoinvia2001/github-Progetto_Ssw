@@ -16,10 +16,7 @@ import { Libro } from '../libro';
 export class InserimentoComponent implements OnInit {
   Titolo: string = 'Inserimento di un nuovo volume';
   @Input() selezione: string | undefined;
-
-  return() {
-    this.selezione = undefined;
-  }
+  
   insert() {
     var autore: HTMLInputElement = document.getElementById(
       'autore'
