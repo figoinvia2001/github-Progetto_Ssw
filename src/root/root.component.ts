@@ -13,8 +13,6 @@ import { CommonModule } from '@angular/common';
 })
 export class RootComponent implements OnInit {
   Titolo: string = "Gestione biblioteca";
-  bottone1: string ="Ricerca";
-  bottone2: string ="Inserimento";
   selezione: string | undefined;
   
 
