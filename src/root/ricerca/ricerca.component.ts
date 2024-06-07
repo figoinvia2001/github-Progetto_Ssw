@@ -28,10 +28,11 @@ export class RicercaComponent implements OnInit {
       next: (res: AjaxResponse<any>) => {
         const archivioData = JSON.parse(res.response);
         biblio = new Archivio(archivioData.libri);
-        if (biblio.cerca(stringa_ricerca).includes("corrispondenze") || biblio.cerca(stringa_ricerca).includes("Nessun risultato")){
+        const cercato = biblio.cerca(stringa_ricerca); 
+        if (cercato.includes("corrispondenze") || cercato.includes("Nessun risultato")){
           output.innerHTML = biblio.cerca(stringa_ricerca).toString();
         }else{
-          this.risultato = biblio.cerca(stringa_ricerca);
+          this.risultato = cercato;
           this.selezione = "risultati";
         }
       },
