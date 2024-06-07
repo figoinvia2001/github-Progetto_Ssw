@@ -27,7 +27,7 @@ export class InserimentoComponent implements OnInit {
     var posizione: HTMLInputElement = document.getElementById(
       'posizione'
     ) as HTMLInputElement;
-    var output: HTMLElement = document.getElementById('notifica') as HTMLElement;
+    var output: HTMLElement = document.getElementById('output') as HTMLElement;
     var biblio: Archivio;
     var new_libro: Libro;
     var i: number = 0;
