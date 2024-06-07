@@ -21,7 +21,7 @@ export class RicercaComponent implements OnInit {
   
   ricerca(){
     var input : HTMLInputElement =  document.getElementById('ricerca') as HTMLInputElement;
-    var output : HTMLDivElement = document.getElementById('notifica') as HTMLDivElement;
+    var output : HTMLDivElement = document.getElementById('output') as HTMLDivElement;
     var stringa_ricerca : string = input.value;
     var biblio: Archivio;
     this.bs.getData().subscribe({
