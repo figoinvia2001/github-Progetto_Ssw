@@ -21,7 +21,7 @@ export class RisultatiComponent implements OnInit {
     var nominativo: HTMLInputElement = document.getElementById('nominativo') as HTMLInputElement;
     var in_prestito:  HTMLElement = document.getElementById('in_prestito') as HTMLElement;
     var posizione: HTMLElement = document.getElementById('posizione') as HTMLElement;
-    var output: HTMLElement = document.getElementById('notifica') as HTMLInputElement;
+    var output: HTMLElement = document.getElementById('output') as HTMLInputElement;
     var biblio: Archivio;
     this.bs.getData().subscribe({
       next: (res: AjaxResponse<any>) => {
