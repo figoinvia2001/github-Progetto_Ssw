@@ -3,7 +3,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ServizioBibliotecaService } from '../../servizio-biblioteca.service';
 import { AjaxResponse } from 'rxjs/ajax';
 import { Archivio } from '../../archivio';
-
 @Component({
   selector: 'app-risultati',
   templateUrl: './risultati.component.html',
@@ -16,7 +15,6 @@ export class RisultatiComponent implements OnInit {
   Titolo : string = "Descrizione del documento";
   @Input() selezione : string | undefined;
   @Input() risultato!: string | string[];
-
   prestito(){
     var nominativo: HTMLInputElement = document.getElementById('nominativo') as HTMLInputElement;
     var in_prestito:  HTMLElement = document.getElementById('in_prestito') as HTMLElement;
@@ -28,21 +26,18 @@ export class RisultatiComponent implements OnInit {
         const archivioData = JSON.parse(res.response);
         biblio = new Archivio(archivioData.libri);
         biblio.libri.map((valore) => {
-          if (valore.posizione==posizione.innerHTML) {
-            valore.utente_prestito = nominativo.value;
-            this.bs.setData(biblio).subscribe({
-              next: (res: AjaxResponse<any>) =>{
-                output.innerHTML = "Presito eseguito";
-                in_prestito.setAttribute('hidden','true');
-              },
-              error: (err) =>{
-                console.error('Observer got an error: ' + JSON.stringify(err));
-                output.innerHTML = "Errore nell'inserimento dei dati";
-              },
-            });
-          }
-        })
-        
+          valore.utente_prestito = nominativo.value;
+          this.bs.setData(biblio).subscribe({
+             next: (res: AjaxResponse<any>) =>{
+               output.innerHTML = "Presito eseguito";
+              in_prestito.setAttribute('hidden','true');
+            },
+            error: (err) =>{
+              console.error('Observer got an error: ' + JSON.stringify(err));
+              output.innerHTML = "Errore nell'inserimento dei dati";
+            },
+          });        
+        })        
       },
       error: (err) =>{
         console.error('Observer got an error: ' + JSON.stringify(err));
@@ -50,10 +45,9 @@ export class RisultatiComponent implements OnInit {
       },
     });
   }
-  
   rimozione(){
     var posizione: HTMLElement = document.getElementById('posizione') as HTMLElement;
-    var output: HTMLElement = document.getElementById('notifica') as HTMLInputElement;
+    var output: HTMLElement = document.getElementById('output') as HTMLInputElement;
     var biblio: Archivio;
     var new_biblio: Archivio;
     this.bs.getData().subscribe({
@@ -77,32 +71,28 @@ export class RisultatiComponent implements OnInit {
       },
     });
   }
-
   restituzione(){
     var button: HTMLElement = document.getElementById('bottone_restituzione') as HTMLElement;
     var posizione: HTMLElement = document.getElementById('posizione') as HTMLElement;
-    var output: HTMLElement = document.getElementById('notifica') as HTMLInputElement;
+    var output: HTMLElement = document.getElementById('output') as HTMLInputElement;
     var biblio: Archivio;
     this.bs.getData().subscribe({
       next: (res: AjaxResponse<any>) => {
         const archivioData = JSON.parse(res.response);
         biblio = new Archivio(archivioData.libri);
         biblio.libri.map((valore) => {
-          if (valore.posizione==posizione.innerHTML) {
-            valore.utente_prestito = undefined;
-            this.bs.setData(biblio).subscribe({
-              next: (res: AjaxResponse<any>) =>{
-                output.innerHTML = "Libro restituito";
-                button.setAttribute("hidden","true")
-              },
-              error: (err) =>{
-                console.error('Observer got an error: ' + JSON.stringify(err));
-                output.innerHTML = "Errore nella restituzione";
-              },
-            });
-          }
+          valore.utente_prestito = undefined;
+          this.bs.setData(biblio).subscribe({
+            next: (res: AjaxResponse<any>) =>{
+              output.innerHTML = "Libro restituito";
+              button.setAttribute("hidden","true")
+            },
+            error: (err) =>{
+              console.error('Observer got an error: ' + JSON.stringify(err));
+              output.innerHTML = "Errore nella restituzione";
+            },
+          });
         })
-        
       },
       error: (err) =>{
         console.error('Observer got an error: ' + JSON.stringify(err));
@@ -110,10 +100,7 @@ export class RisultatiComponent implements OnInit {
       },
     });
   }
-
   constructor(private bs: ServizioBibliotecaService) {}
-
   ngOnInit() {
   }
-
 }
